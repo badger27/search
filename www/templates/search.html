@@ -1,0 +1,46 @@
+<ion-view view-title="search">
+    <ion-content class="has-header" ng-controller="searchArtist">
+        
+   <div class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+          <input type="text" ng-model="query" placeholder="Search for players" autofocus>
+          </label>
+          <button class="button button-positive">Search</button>
+         
+        </div>
+    </div>
+        <div class="row">
+        <div class="col col-100 ">
+            
+        <label>By:
+              <select  ng-model="artistOrder">
+                    <option value="name">Name </option>
+                    <option value="reknown">Reknown </option>
+              </select>
+        </label>
+            
+        
+            <label>
+                <input type="radio" ng-model="direction" name="direction" checked >
+                desending
+            </label>
+                        
+                <label>
+                  <input  type="radio" ng-model="direction" name="direction" value="reverse">
+                  Asending
+                </label>
+           
+        </div> 
+        </div>
+     <div class="list">
+         <a class="item item-thumbnail-left"
+            ng-repeat="item in artists| filter: query | orderBy: artistOrder:direction" 
+            href="#/app/details/{{artists.indexOf(item)}}">
+          <img ng-src=" images/{{item.shortname}}_tn.jpg" alt="item">
+          <h2>{{item.name | uppercase}}</h2>
+          <h3>{{item.reknown}}</h3>
+         </a>
+     </div>
+  </ion-content>
+</ion-view>
